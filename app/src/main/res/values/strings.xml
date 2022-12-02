@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RedditAndroidApp</string>
+    <string name="app_name">Top Reddit Posts</string>
     <string name="empty">empty</string>
     <string name="refresh">refresh</string>
 </resources>
