@@ -28,9 +28,7 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
 
     private Button refresh;
-    private TextView slot;
     private String url;
-    private ImageView slot_image;
     private LinearLayout layout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +38,8 @@ public class MainActivity extends AppCompatActivity {
         //Define of all future variables
         url = "https://www.reddit.com/top.json";
         refresh = findViewById(R.id.refresh);
-        slot = findViewById(R.id.slot_text);
-        slot_image = findViewById(R.id.slot_image);
 
+        layout = findViewById(R.id.main_list);
 
         //Refresh Button active
         refresh.setOnClickListener(new View.OnClickListener() {
@@ -54,12 +51,21 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void createPosts(String url, String text){
+        View view = getLayoutInflater().inflate(R.layout.post_reddit, null);
+        TextView text_slot = view.findViewById(R.id.text_slot);
+        ImageView image_slot = view.findViewById(R.id.image_slot);
+        Picasso.get().load(url).into(image_slot);
+        text_slot.setText(text);
+        layout.addView(view);
+    }
+
     private class GetDataFromURL extends AsyncTask<String, String, String> {
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            slot.setText("Loading...");
+            Toast.makeText(MainActivity.this, R.string.refresh, Toast.LENGTH_SHORT);
         }
 
         @Override
@@ -104,10 +110,13 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(s);
             try {
                 JSONObject object = new JSONObject(s);
-                Picasso.get()
-                        .load(object.getJSONObject("data").getJSONArray("children").getJSONObject(0).getJSONObject("data").getString("url_overridden_by_dest"))
-                                .into(slot_image);
-                slot.setText("Header: " + object.getJSONObject("data").getJSONArray("children").getJSONObject(0).getJSONObject("data").getString("title") +  "\n");
+                for(int i =0; i< object.getJSONObject("data").getJSONArray("children").length(); i++){
+                    System.out.println("Test of text: " + object.getJSONObject("data").getJSONArray("children").getJSONObject(i).getJSONObject("data").getString("title"));
+                    createPosts(object.getJSONObject("data").getJSONArray("children").getJSONObject(i).getJSONObject("data").getString("url_overridden_by_dest"),
+                            object.getJSONObject("data").getJSONArray("children").getJSONObject(i).getJSONObject("data").getString("title"));
+                }
+
+
 
             } catch (JSONException e) {
                 e.printStackTrace();

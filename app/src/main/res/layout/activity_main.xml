@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
     <LinearLayout
         android:id="@+id/main_list"
         android:layout_width="0dp"
@@ -17,57 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:id="@+id/slot"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/descript"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Post #1"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/slot_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/empty"
-                android:textSize="16sp" />
-
-            <ImageView
-                android:id="@+id/slot_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:srcCompat="@tools:sample/avatars" />
-
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/slot2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/slot_text2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/empty" />
-
-            <ImageView
-                android:id="@+id/slot_image2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:srcCompat="@tools:sample/avatars" />
-
-        </LinearLayout>
-
     </LinearLayout>
-
     <Button
         android:id="@+id/refresh"
         android:layout_width="wrap_content"
