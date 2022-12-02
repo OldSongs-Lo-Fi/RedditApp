@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         ImageView image_slot = view.findViewById(R.id.image_slot);
         Picasso.get().load(url).into(image_slot);
         text_slot.setText(text);
+
+
         layout.addView(view);
     }
 
